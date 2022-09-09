@@ -1,1 +1,1 @@
-### coding record like Leetcode and Niuke
+### Coding record like Leetcode, Niuke and so on
