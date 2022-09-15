@@ -19,3 +19,25 @@ public:
 private:
     unordered_map<int, vector<int>> m;
 };
+
+// 池塘抽样（但超时了）
+class Solution2 {
+public:
+    Solution(vector<int>& _nums): nums(_nums), n(nums.size()) { }
+    
+    int pick(int target) {
+        int res;
+        int cnt = 0;
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] == target) {
+                if (rand() % ++cnt == 0) {
+                    res = i;
+                }
+            }
+        }
+        return res;
+    }
+private:
+    vector<int>& nums;
+    int n;
+};
