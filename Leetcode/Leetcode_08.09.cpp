@@ -1,21 +1,28 @@
 // 括号
-// DFS
+// backtrack
 class Solution {
 public:
-    void dfs(int left, int right, string str) {
-        if (left == 0 && right == 0) {
-            res.emplace_back(str);
-            return;
-        }
-        if (left > 0) dfs(left-1, right, str+'(');
-        if (right > left) dfs(left, right-1, str+')');
-    }
     vector<string> generateParenthesis(int n) {
-        if (n == 0) return {};
-        string str = "";
-        dfs(n, n, str);
+        vector<string> res;
+        string str;
+        backtrack(res, str, 0, 0, n);
         return res;
     }
 private:
-    vector<string> res;
+    void backtrack(vector<string>& res, string& str, int left, int right, int n) {
+        if (str.size() == n * 2) {
+            res.emplace_back(str);
+            return;
+        }
+        if (left < n) {
+            str.push_back('(');
+            backtrack(res, str, left + 1, right, n);
+            str.pop_back();
+        }
+        if (left > right) {
+            str.push_back(')');
+            backtrack(res, str, left, right + 1, n);
+            str.pop_back();
+        }
+    }
 };
